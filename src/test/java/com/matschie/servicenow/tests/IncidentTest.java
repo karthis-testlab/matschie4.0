@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import org.testng.annotations.Test;
 
+import com.matschie.servicenow.services.IncidentService;
 import com.matschie.testng.apis.TestNGHooks;
 
 import io.restassured.http.ContentType;
@@ -27,6 +28,13 @@ public class IncidentTest extends TestNGHooks {
 		getMethod(requestSpec, pathParams, "/{sysId}")
 		  .then()
 		  .spec(expectResponse(200, "OK", ContentType.JSON));
+	}
+	
+	@Test
+	public void shouldAbleToCreateIncidentWithoutBody1() {
+		IncidentService incidentService = new IncidentService();
+		incidentService.createIncidentWithoutBody();
+		incidentService.validateIncidentIsCreated();
 	}
 
 }
