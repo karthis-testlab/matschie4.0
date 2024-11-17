@@ -1,5 +1,6 @@
 package com.matschie.testng.apis;
 
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import static com.matschie.general.utils.PropertiesHandler.*;
 import com.matschie.rest.assured.common.RestAssuredBase;
@@ -16,6 +17,11 @@ public class TestNGHooks extends RestAssuredBase {
 				                  config("service.now.instance.basePath"),
 				                  config("service.now.instance.username"), 
 				                  secret("service.now.instance.password"));
+	}
+	
+	@AfterMethod
+	public void afterMethod() {
+		// This method will run after each every @Test method.		
 	}
 
 }

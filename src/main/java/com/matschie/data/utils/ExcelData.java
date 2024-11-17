@@ -10,7 +10,7 @@ public class ExcelData {
 		try {
 			XSSFWorkbook workbook = new XSSFWorkbook("src/main/resources/data/" + fileName + ".xlsx");
 			XSSFSheet sheet = workbook.getSheetAt(0);
-			int rowCount = sheet.getLastRowNum();
+			int rowCount = sheet.getLastRowNum();			
 			int columnCount = sheet.getRow(0).getLastCellNum();
 			data = new String[rowCount][columnCount];
 			for (int i = 1; i <= rowCount; i++) {

@@ -39,6 +39,14 @@ public class RestAssuredBase {
 				.get();
 	}
 	
+	public Response getMethod(RequestSpecification requestSpecification, Map<String, String> pathParams, String pathResource) {
+		return given()
+				.spec(requestSpecification)
+				.pathParams(pathParams)
+				.when()
+				.get(pathResource);
+	}
+	
 	public Response getMethod(RequestSpecification requestSpecification, Map<String, String> pathParams, Map<String, String> queryParams) {
 		return given()
 				.spec(requestSpecification)
@@ -92,6 +100,14 @@ public class RestAssuredBase {
 				.put();
 	}
 	
+	public Response putMethod(RequestSpecification requestSpecification, String pathResource) {
+		return given()
+				.spec(requestSpecification)
+				.header("Content-Type", "application/json")
+				.when()
+				.put(pathResource);
+	}
+	
 	public Response deleteMethod(RequestSpecification requestSpecification, Map<String, String> pathParams) {
 		return given()
 				.spec(requestSpecification)
@@ -100,11 +116,19 @@ public class RestAssuredBase {
 				.delete();
 	}
 	
+	public Response deleteMethod(RequestSpecification requestSpecification, Map<String, String> pathParams, String pathResource) {
+		return given()
+				.spec(requestSpecification)
+				.pathParams(pathParams)
+				.when()
+				.delete(pathResource);
+	}
+	
 	public ResponseSpecification expectResponse(int statusCode, String statusLine, ContentType contentType) {
 		ResponseSpecification expect = RestAssured.expect();
-		expect.statusCode(201);
-		expect.statusLine(containsString("Created"));
-		expect.contentType(ContentType.JSON);
+		expect.statusCode(statusCode);
+		expect.statusLine(containsString(statusLine));
+		expect.contentType(contentType);
 		return expect;
 	}
 
