@@ -39,8 +39,16 @@ public class IncidentService extends RestAssuredBase {
 				       secret("service.now.instance.password")), pathParams);
 	}
 	
+	public void createIncidentWithoutBody(RequestSpecification spec) {		
+		response = postMethod(spec, pathParams);
+	}
+	
 	public void createIncidentWithBody(Object requestPayload) {
 		response = postMethod(requestSpecification, pathParams, requestPayload);
+	}
+	
+	public void createIncidentWithBody(RequestSpecification spec, Object requestPayload) {
+		response = postMethod(spec, pathParams, requestPayload);
 	}
 	
 	public void validateIncidentIsCreated() {
