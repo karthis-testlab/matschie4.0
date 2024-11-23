@@ -24,6 +24,14 @@ public class RestAssuredBase {
 		    .build();
 	}
 	
+	public RequestSpecification requestSpec(String baseUri, String basePath) {
+		return new RequestSpecBuilder()
+		    .setBaseUri(baseUri)
+		    .addFilter(new RestAssuredListener())
+		    .setBasePath(basePath)
+		    .build();
+	}
+	
 	public Response getMethod(RequestSpecification requestSpecification) {
 		return given()
 				.spec(requestSpecification)
@@ -73,6 +81,15 @@ public class RestAssuredBase {
 				.post();
 	}
 	
+	public Response postMethod(RequestSpecification requestSpecification, Object requstPayload) {
+		return given()
+				.spec(requestSpecification)				
+				.header("Content-Type", "application/json")
+				.when()
+				.body(requstPayload)
+				.post();
+	}
+	
 	public Response postMethod(RequestSpecification requestSpecification, Map<String, String> pathParams, Object requestPayload) {
 		return given()
 				.spec(requestSpecification)
@@ -90,6 +107,16 @@ public class RestAssuredBase {
 				.when()
 				.body(requestPayload)
 				.put();
+	}
+	
+	public Response putMethod(RequestSpecification requestSpecification, Map<String, String> headers, Map<String, String> params, Object requestPayload) {
+		return given()
+				.spec(requestSpecification)
+				.headers(headers)
+				.pathParams(params)
+				.when()
+				.body(requestPayload)
+				.put("/{id}");
 	}
 	
 	public Response putMethod(RequestSpecification requestSpecification) {

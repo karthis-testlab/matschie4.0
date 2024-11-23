@@ -36,23 +36,7 @@ public class IncidentTest extends TestNGHooks {
 	public void shouldAbleToCreateIncidentWithoutBody1() {
 		IncidentService incidentService = new IncidentService();
 		incidentService.createIncidentWithoutBody(requestSpec);
-		incidentService.validateIncidentIsCreated();
-		
-		BookingRequestPayload payload = new BookingRequestPayload();
-		BookingDates dates = new BookingDates();
-		dates.setCheckin("2024-12-01");
-		dates.setCheckout("2024-12-10");
-		
-		payload.setFirstname("Karthi");
-		payload.setLastname("Keyan");
-		payload.setTotalprice(1000);
-		payload.setDepositpaid(false);
-		payload.setBookingdates(dates);
-		payload.setAdditionalneeds("Breakfast");
-		
-		incidentService.createIncidentWithBody(requestSpec, payload);
-		incidentService.validateIncidentIsCreated();
-		
+		incidentService.validateIncidentIsCreated();		
 	}
 	
 	
